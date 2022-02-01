@@ -1,49 +1,13 @@
 from distutils.command.config import config
 from distutils.log import debug
-from flask import Flask, render_template,request
-import pickle, librosa,soundfile
-import numpy as np
+from unittest import result
+
+from tensorflow import keras
+import librosa
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
+import numpy as np
 
-# import warnings,sys
-# if not sys.warnoptions:
-#     warnings.simplefilter("ignore")
-# warnings.filterwarnings("ignore", category=DeprecationWarning) 
-
-app = Flask(__name__)
-UPLOAD_FOLDER = '/session_files/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# with open("model_pkl", 'rb') as f:
-#     model = pickle.load(f)
-
-scaler = StandardScaler()
-encoder = OneHotEncoder()
-
-Y = encoder.fit_transform(np.array(['angry','calm','happy','sad','surprise']).reshape(-1,1)).toarray()
-
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
-
-@app.route('/')  
-def upload():  
-    return render_template("file_upload_form.html")  
- 
-@app.route('/success', methods = ['POST'])  
-def success():  
-    if request.method == 'POST':  
-        f = request.files['file']  
-        f.save(f.filename)  
-        # data, sample_rate = librosa.load(path, duration=2.5, offset=0.6)
-        # # res1 = extract_features(data,sample_rate)
-        # # result = np.array(res1)
-
-        # # x = np.expand_dims(scaler.fit_transform(result, axis=2))
-        # # # pred = model.predict(x)
-        # # # y = encoder.inverse_transform(pred)
-
-        return render_template("success.html", name = f.filename)  
+from flask import Flask, render_template,request
 
 def extract_features(data,sample_rate):
     # ZCR
@@ -70,15 +34,63 @@ def extract_features(data,sample_rate):
     
     return result
 
+def noise(data):
+    noise_amp = 0.035*np.random.uniform()*np.amax(data)
+    data = data + noise_amp*np.random.normal(size=data.shape[0])
+    return data
+
+def stretch(data, rate=0.8):
+    return librosa.effects.time_stretch(data, rate)
+
+def shift(data):
+    shift_range = int(np.random.uniform(low=-5, high = 5)*1000)
+    return np.roll(data, shift_range)
+
+def pitch(data, sampling_rate, pitch_factor=0.7):
+    return librosa.effects.pitch_shift(data, sampling_rate, pitch_factor)
+
 def get_features(path):
     # duration and offset are used to take care of the no audio in start and the ending of each audio files as seen above.
     data, sample_rate = librosa.load(path, duration=2.5, offset=0.6)
     
     # without augmentation
-    res1 = extract_features(data)
+    res1 = extract_features(data,sample_rate)
     result = np.array(res1)
-     
+    
+    # data with noise
+    noise_data = noise(data)
+    res2 = extract_features(noise_data,sample_rate)
+    result = np.vstack((result, res2)) # stacking vertically
+    
+    # data with stretching and pitching
+    new_data = stretch(data)
+    data_stretch_pitch = pitch(new_data, sample_rate)
+    res3 = extract_features(data_stretch_pitch,sample_rate)
+    result = np.vstack((result, res3)) # stacking vertically
+    
     return result
+
+app = Flask(__name__)
+model = keras.models.load_model("model.h5")
+
+scaler = StandardScaler()
+encoder = OneHotEncoder()
+
+Y = encoder.fit_transform(np.array(['angry','calm','happy','sad','surprise']).reshape(-1,1)).toarray()
+
+@app.route('/')  
+def upload():  
+    return render_template("file_upload_form.html")  
+ 
+@app.route('/success', methods = ['POST'])  
+def success():  
+    if request.method == 'POST':  
+        f = request.files['file']  
+        result = get_features(f)  
+        x = np.expand_dims(scaler.fit_transform(result),axis=2)
+        pred = model.predict(x)
+        y = encoder.inverse_transform(pred)
+        return render_template("success.html", prediction = y)  
 
 if __name__=="__main__":
     app.run(debug=True)
