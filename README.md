@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Bishal-Nakoda/SER">
-    ![fav512]("SER/static/fav512.png")
+    ![fav512](SER/static/fav512.png)
   </a>
 
   <h3 align="center">Speech Emotion Recognition</h3>
