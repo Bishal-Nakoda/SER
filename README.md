@@ -84,7 +84,9 @@ Below is a step by step instruction for setting up the application. *Tip: Use vi
 ## Developers
 
 Bishal Nakoda - [GitHub](https://github.com/Bishal-Nakoda)
+
 Rutuparna Kudtarkar - [GitHub](https://github.com/rutuparna07)
+
 Keyur Mod - [GitHub](https://github.com/BearOnBeets)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
