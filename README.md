@@ -45,6 +45,43 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- GETTING STARTED -->
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+How to get things you need to use the software and how to install them.
+* PowerShell
+  ```sh
+  pip install -r requirements.txt
+  ```
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+Below is a step by step instruction for setting up the application. *Tip: Use virtualenv which allows you to manage separate package installations for different projects.*
+
+1. Open Shell/CommadPrompt
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Bishal-Nakoda/SER.git
+   ```
+3. Install required packages
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. Simply run application
+   ```sh
+   python app.py
+   ```
+   Debugger will be activated on LocalHost
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- CONTACT -->
 ## Developers
 
