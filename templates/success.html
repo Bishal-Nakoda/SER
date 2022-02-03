@@ -2,6 +2,8 @@
 
 <head>
     <title>SER | Audio Analysis</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='fav.png') }}">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 
     <!--Import Google Icon Font-->
@@ -20,7 +22,7 @@
 <body>
     <nav style="background-color: #222222;">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center" style="font-family:'Julius Sans One', sans-serif; font-size:3vh;">Speech Emotion Recognition</a>
+            <a href="\" class="brand-logo center" style="font-family:'Julius Sans One', sans-serif; font-size:3vh;">Speech Emotion Recognition</a>
         </div>
     </nav>
 
@@ -31,7 +33,7 @@
         </div>
         <div class="col s4">
             <!-- Grey navigation panel -->
-            <ul class="collection hoverable" id="ls">
+            <ul class="collection z-depth-2" id="ls">
                 <li class="collection-header">
                     <h4>Recognized Emotions</h4>
                 </li>
@@ -39,18 +41,33 @@
                 <li class="collection-item ">{{n}}</li>
                 {% endfor %}
             </ul>
-            <a href="\ " class="btn waves-effect waves-light " style="text-decoration: none; color: aliceblue; background-color: #1c5d99; float: right; ">
+
+            <a href="\ " class="btn waves-effect waves-light hoverable" style="text-decoration: none; color: aliceblue; background-color: #1c5d99; float: left; ">
                 <i class="material-icons left ">chevron_left</i> Try Another File
             </a>
+
+            <button href="\ " class="btn waves-effect waves-light hoverable" style="text-decoration: none; color: #1c5d99; background-color: transparent; float: right; ">
+                <i class="material-icons left ">view_array</i> See Spectogram
+            </button>
+            <br><br><br>
+
             <!-- {{prediction}} -->
         </div>
-
-        <div class="col s4 ">
+        <img src="{{ url_for('static',filename='spectogram.png') }}" style="width:55%">
+        <div class=" col s4 ">
             <!-- Teal page content  -->
         </div>
 
     </div>
 
+    <script>
+        var btn = document.getElementsByTagName('button')[0]
+        var i = document.getElementsByTagName('img')[0]
+
+        btn.addEventListener('click', evt => {
+            i.classList.toggle('show')
+        })
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
     <!-- <p>File uploaded successfully</p>
     <p>File Name: {{prediction}}</p> -->

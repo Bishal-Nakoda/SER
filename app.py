@@ -61,7 +61,7 @@ def create_spectrogram(data, sr):
     display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')   
     #librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='log')
     plt.colorbar()
-    plt.savefig('spectogram.png')
+    plt.savefig('static\spectogram.png')
 
 def get_features(path):
     # duration and offset are used to take care of the no audio in start and the ending of each audio files as seen above.
