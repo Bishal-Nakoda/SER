@@ -4,10 +4,13 @@ from unittest import result
 
 from tensorflow import keras
 import librosa
+from librosa import display
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 import numpy as np
+import matplotlib.pyplot as plt
 
-from flask import Flask, render_template,request
+
+from flask import Flask, render_template,request,Response
 
 def extract_features(data,sample_rate):
     # ZCR
@@ -49,6 +52,17 @@ def shift(data):
 def pitch(data, sampling_rate, pitch_factor=0.7):
     return librosa.effects.pitch_shift(data, sampling_rate, pitch_factor)
 
+def create_spectrogram(data, sr):
+    # stft function converts the data into short term fourier transform
+    X = librosa.stft(data)
+    Xdb = librosa.amplitude_to_db(abs(X))
+    plt.figure(figsize=(12, 3))
+    plt.title('Spectrogram for sample', size=15)
+    display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')   
+    #librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='log')
+    plt.colorbar()
+    plt.savefig('spectogram.png')
+
 def get_features(path):
     # duration and offset are used to take care of the no audio in start and the ending of each audio files as seen above.
     data, sample_rate = librosa.load(path, duration=2.5, offset=0.6)
@@ -68,7 +82,11 @@ def get_features(path):
     res3 = extract_features(data_stretch_pitch,sample_rate)
     result = np.vstack((result, res3)) # stacking vertically
     
+    # Saving graph
+    create_spectrogram(data, sample_rate)
+
     return result
+
 
 app = Flask(__name__)
 model = keras.models.load_model("model.h5")
@@ -89,8 +107,11 @@ def success():
         result = get_features(f)  
         x = np.expand_dims(scaler.fit_transform(result),axis=2)
         pred = model.predict(x)
+        
         y = np.unique(encoder.inverse_transform(pred))
+
         return render_template("success.html", prediction = y)  
+
 
 if __name__=="__main__":
     app.run(debug=True)
