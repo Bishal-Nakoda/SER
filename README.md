@@ -83,11 +83,11 @@ Below is a step by step instruction for setting up the application. *Tip: Use vi
 <!-- CONTACT -->
 ## Developers
 
-Bishal Nakoda - [GitHub](https://github.com/Bishal-Nakoda)
+Bishal Nakoda - [GitHub](https://github.com/Bishal-Nakoda)</br>
 
-Rutuparna Kudtarkar - [GitHub](https://github.com/rutuparna07)
+Rutuparna Kudtarkar - [GitHub](https://github.com/rutuparna07)</br>
 
-Keyur Mod - [GitHub](https://github.com/BearOnBeets)
+Keyur Modh - [GitHub](https://github.com/BearOnBeets)</br>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
