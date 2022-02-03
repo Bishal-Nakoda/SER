@@ -20,8 +20,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Proposed System ScreenShot][demo.png]](https://github.com/Bishal-Nakoda/SER)
-
+![demo](./demo.png)
 Emotions plays a vital role in a human’s life as it is a medium of expression of one’s perspective to others. With the Help of Speech Emotion Recognition (SER), we can recognize the emotions a person is experiencing just from his/her speech. Essentially, Speech Emotion Recognition (SER) can help us further develop man-machine interface.
 
 Here's how:
