@@ -31,7 +31,7 @@ Here's how:
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section lists major frameworks/libraries used to bootstrap this application. 
 
 * [Python](https://www.python.org/)
 * [Numpy](https://numpy.org/)
@@ -48,7 +48,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -61,7 +60,6 @@ How to get things you need to use the software and how to install them.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 Below is a step by step instruction for setting up the application. *Tip: Use virtualenv which allows you to manage separate package installations for different projects.*
 
