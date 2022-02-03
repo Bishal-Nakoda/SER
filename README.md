@@ -8,7 +8,6 @@
   <h3 align="center">Speech Emotion Recognition</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
     An interactive interface for machine learning model!
     <br />
     <a href="https://github.com/Bishal-Nakoda/SER"><strong>Explore the code »</strong></a>
