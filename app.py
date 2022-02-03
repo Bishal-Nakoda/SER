@@ -89,7 +89,7 @@ def success():
         result = get_features(f)  
         x = np.expand_dims(scaler.fit_transform(result),axis=2)
         pred = model.predict(x)
-        y = encoder.inverse_transform(pred)
+        y = np.unique(encoder.inverse_transform(pred))
         return render_template("success.html", prediction = y)  
 
 if __name__=="__main__":

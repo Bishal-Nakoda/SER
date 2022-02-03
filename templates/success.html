@@ -1,9 +1,59 @@
-<html>  
-<head>  
-<title>success</title>  
-</head>  
-<body>  
-<p>File uploaded successfully</p>  
-<p>File Name: {{prediction}}</p>  
-</body>  
-</html>  
+<html>
+
+<head>
+    <title>SER | Audio Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- GoogleFont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Julius+Sans+One&display=swap" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+    <nav style="background-color: #222222;">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" style="font-family:'Julius Sans One', sans-serif; font-size:3vh;">Speech Emotion Recognition</a>
+        </div>
+    </nav>
+
+    <div class="row" style="height: 500px;">
+        </br>
+        <div class="col s4">
+            <!-- Teal page content  -->
+        </div>
+        <div class="col s4">
+            <!-- Grey navigation panel -->
+            <ul class="collection hoverable" id="ls">
+                <li class="collection-header">
+                    <h4>Recognized Emotions</h4>
+                </li>
+                <hr style=" background-color:#BBCDE5;"> {% for n in prediction %}
+                <li class="collection-item ">{{n}}</li>
+                {% endfor %}
+            </ul>
+            <a href="\ " class="btn waves-effect waves-light " style="text-decoration: none; color: aliceblue; background-color: #1c5d99; float: right; ">
+                <i class="material-icons left ">chevron_left</i> Try Another File
+            </a>
+            <!-- {{prediction}} -->
+        </div>
+
+        <div class="col s4 ">
+            <!-- Teal page content  -->
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+    <!-- <p>File uploaded successfully</p>
+    <p>File Name: {{prediction}}</p> -->
+</body>
+
+</html>

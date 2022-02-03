@@ -1,11 +1,63 @@
-<html>  
-<head>  
-    <title>upload</title>  
-</head>  
-<body>  
-    <form action = "/success" method = "post" enctype="multipart/form-data">  
-        <input type="file" name="file" />  
-        <input type = "submit" value="Upload">  
-    </form>  
-</body>  
-</html>  
+<html>
+
+<head>
+    <title>SER | Speech Emotion Recognition</title>
+    <!-- Local links -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- GoogleFont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Julius+Sans+One&display=swap" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body style="margin: 0px;">
+    <nav style="background-color: #222222;">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" style="font-family:'Julius Sans One', sans-serif; font-size:3vh;">Speech Emotion Recognition</a>
+        </div>
+    </nav>
+    </br>
+    </br>
+    </br>
+    <div class="container" style="width: 100%; ">
+        <div class="container">
+            <form action="/success" method="post" enctype="multipart/form-data">
+                <div class="file-field input-field">
+                    <div class="btn-floating btn-large waves-effect waves-light" style="width: 45px; background-color: #222222;">
+                        <i class="material-icons" style="position: relative; margin-top: -5px;">note_add</i>
+                        <input type="file" name="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Drag or Choose an audio file from Computer (.wav)">
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" value="Upload" style="background-color: #1c5d99; float: right;">Recognize
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+        <div class="container" style="height: 200px;">
+            <div class="title-wrapper" style="text-align: center;">
+                <h1 class="title">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                </h1>
+            </div>
+        </div>
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+
+</html>
+<!-- "{{url_for('static', filename='bg.jpg')}}" -->
