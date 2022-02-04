@@ -36,12 +36,15 @@
                 <div class="file-field input-field">
                     <div class="btn-floating btn-large waves-effect waves-light" style="width: 45px; background-color: #222222;">
                         <i class="material-icons" style="position: relative; margin-top: -5px;">note_add</i>
-                        <input type="file" name="file">
+                        <input type="file" name="file" id="upload">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" placeholder="Drag or Choose an audio file from Computer (.wav)">
                     </div>
                 </div>
+                <audio id="audio" controls>
+                    <source src="" id="src" />
+                </audio>
                 <button class="btn waves-effect waves-light" type="submit" value="Upload" style="background-color: #1c5d99; float: right;">Recognize
                     <i class="material-icons right">send</i>
                 </button>
@@ -56,7 +59,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function handleFiles(event) {
+            var files = event.target.files;
+            $("#src").attr("src", URL.createObjectURL(files[0]));
+            document.getElementById("audio").load();
+        }
+
+        document.getElementById("upload").addEventListener("change", handleFiles, false);
+    </script>
+
     <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
